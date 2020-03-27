@@ -21,15 +21,15 @@ Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('a
 //========create========
 Route::get('/posts/create', 'PostController@create')->name('posts.create')->middleware('auth');
 //=======store==========
-Route::post('/posts', 'PostController@store')->name('posts.store');
+Route::post('/posts', 'PostController@store')->name('posts.store')->middleware('auth');
 //=======show===========
-Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show')->middleware('auth');
 //=======Edit===========
-Route::GET('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::GET('/posts/{post}/edit', 'PostController@edit')->name('posts.edit')->middleware('auth');
 //=======Update===========
-Route::PUT('/posts/{post}', 'PostController@update')->name('posts.update');
+Route::PUT('/posts/{post}', 'PostController@update')->name('posts.update')->middleware('auth');
 //=======Delete===========
-Route::DELETE('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+Route::DELETE('/posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
 
 Auth::routes();
 
