@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 //=====index=========
-Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('auth');
 //========create========
-Route::get('/posts/create', 'PostController@create')->name('posts.create');
+Route::get('/posts/create', 'PostController@create')->name('posts.create')->middleware('auth');
 //=======store==========
 Route::post('/posts', 'PostController@store')->name('posts.store');
 //=======show===========
@@ -30,3 +30,7 @@ Route::GET('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::PUT('/posts/{post}', 'PostController@update')->name('posts.update');
 //=======Delete===========
 Route::DELETE('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

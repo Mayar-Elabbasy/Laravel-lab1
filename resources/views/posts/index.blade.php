@@ -35,7 +35,7 @@
                          @method('DELETE')
                       <button type="submit"
                        onclick="return confirm('Do you want to delete this post?')" 
-                       class="btn btn-danger">delete</button>
+                       class="btn btn-danger">Delete</button>
                 </form>
                 </td>
                     <!-- <td><a class="btn btn-danger"

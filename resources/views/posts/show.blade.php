@@ -41,7 +41,7 @@
               <tr>
               <th class=" border border-dark text-light">Name:</th>
                   <td class=" border border-dark text-light">
-                      {{$post->name}}</td>
+                      {{$post->user->name}}</td>
               </tr>
               <tr>
               <th class=" border border-dark text-light">Created AT:</th>
@@ -50,7 +50,7 @@
               </tr>
               <tr>
               <th class=" border border-dark text-light">Email:</th>
-                    <td class=" border border-dark text-light">{{$post->email}}</td>
+                    <td class=" border border-dark text-light">{{$post->user->email}}</td>
               </tr>
      
       </table>
