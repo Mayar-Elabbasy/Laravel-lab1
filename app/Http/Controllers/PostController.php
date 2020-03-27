@@ -36,6 +36,18 @@ class PostController extends Controller
 
     public function store(){
         $request = request();
+
+        $validatedData = $request->validate([
+            'title' => 'required|min:3|unique:posts',
+            'description' => 'required|min:10',
+        ],[
+            'title.min' => 'The Title has minimum of 3 chars',
+            'title.required' => 'Title is required, you have to fill it!',
+            'title.unique' => 'Title is unique, you have to choose a different title!',
+            'description.min' => 'The Description has minimum of 10 chars',
+            'description.required' => 'Description is required, you have to fill it!',
+        ]);
+
         Post::create([
             'title' => $request->title,
             'description' =>  $request->description,
@@ -55,9 +67,6 @@ class PostController extends Controller
         ]);
     }
 
-    
- 
-
     public function destroy(){
         $request = request();
         $postId = $request->post;
@@ -69,6 +78,17 @@ class PostController extends Controller
 
     public function update($postId){
         $request = request();
+        $validatedData = $request->validate([
+            'title' => 'required|min:3',
+            'description' => 'required|min:10',
+        ],[
+            'title.min' => 'The Title has minimum of 3 chars',
+            'title.required' => 'Title is required, you have to fill it!',
+            'title.unique' => 'Title is unique, you have to choose a different title!',
+            'description.min' => 'The Description has minimum of 10 chars',
+            'description.required' => 'Description is required, you have to fill it!',
+        ]);
+
         $postId = $request->post;
         Post::where('id', $postId)
             ->update([

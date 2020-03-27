@@ -1,12 +1,22 @@
 @extends('layouts.app')
 
+
 @section('content')
+@if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
 <form method="POST" action="{{route('posts.update',['post' => $post->id])}}">
     @csrf
     @method('PUT')
     <div class="form-group">
       <label >Title</label>
-      <input name="title" type="text" class="form-control" aria-describedby="emailHelp">
+      <input name="title" type="text" value="{{$post->title}}" class="form-control" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <input type="hidden" name="created_at" value="<?php echo time(); ?>">
@@ -14,7 +24,7 @@
     <div class="form-group">
       <label for="exampleInputPassword1">Description</label>
       <textarea name="description" class="form-control">
-
+        {{$post->description}}
       </textarea>
     </div>
     <div class="form-group">
