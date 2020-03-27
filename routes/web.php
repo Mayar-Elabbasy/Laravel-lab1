@@ -16,8 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//=====index=========
 Route::get('/posts', 'PostController@index')->name('posts.index');
-
+//========create========
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
-
+//=======store==========
+Route::post('/posts', 'PostController@store')->name('posts.store');
+//=======show===========
 Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
+//=======Edit===========
+Route::GET('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+//=======Update===========
+Route::PUT('/posts/{post}', 'PostController@update')->name('posts.update');
+//=======Delete===========
+Route::DELETE('/posts/{post}', 'PostController@destroy')->name('posts.destroy');

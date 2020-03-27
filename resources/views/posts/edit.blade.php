@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{route('posts.store')}}">
+<form method="POST" action="{{route('posts.update',['post' => $post->id])}}">
     @csrf
+    @method('PUT')
     <div class="form-group">
       <label >Title</label>
       <input name="title" type="text" class="form-control" aria-describedby="emailHelp">
@@ -27,7 +28,6 @@
         </select>
     </div>
 
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Update</button>
   </form>
 @endsection
