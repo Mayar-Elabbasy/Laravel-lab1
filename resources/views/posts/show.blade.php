@@ -18,7 +18,7 @@
               <tr>
               <th class=" border border-dark text-light">Created AT:</th>
                   <td class=" border border-dark text-light">
-                              {{ $post->created_at}}</td>
+                              {{ $post->created_at->format('m-d-Y')}}</td>
               </tr>
               <tr>
               <th class=" border border-dark text-light">Description:</th>
@@ -46,7 +46,7 @@
               <tr>
               <th class=" border border-dark text-light">Created AT:</th>
                   <td class=" border border-dark text-light">
-                              {{ $post->created_at}}</td>
+                              {{ $post->created_at->format('m-d-Y')}}</td>
               </tr>
               <tr>
               <th class=" border border-dark text-light">Email:</th>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +35,4 @@ Route::DELETE('/posts/{post}', 'PostController@destroy')->name('posts.destroy')-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

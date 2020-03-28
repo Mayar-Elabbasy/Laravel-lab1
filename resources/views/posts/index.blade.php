@@ -26,7 +26,7 @@
                     <td colspan="2" class="font-weight-bold border border-primary">
                         {{$post->title }}</td>
                     <td colspan="2" class="border border-primary">
-                        {{$post->created_at}}</td>
+                        {{$post->created_at->format('m-d-Y')}}</td>
                     <td colspan="4" class="border border-primary">
                         {{ $post->user? $post->user->name : 'not exist'}}</td>
                     <td class="border border-primary">
@@ -46,6 +46,7 @@
                             Delete</button>
                         </form>
                     </td>
+                
                  </tr>
                     @endforeach
                 </tbody>
