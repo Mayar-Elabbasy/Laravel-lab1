@@ -11,24 +11,29 @@
           </ul>
       </div>
   @endif
-<form method="POST" action="{{route('posts.update',['post' => $post->id])}}">
+<form method="POST" class="m-5 border border-dark p-2 bg-info"
+    action="{{route('posts.update',['post' => $post->id])}}">
     @csrf
     @method('PUT')
     <div class="form-group">
-      <label >Title</label>
-      <input name="title" type="text" value="{{$post->title}}" class="form-control" aria-describedby="emailHelp">
+      <label  class="m-2 bg-dark text-light font-weight-bold rounded-pill p-2">
+        Title</label>
+      <input name="title" type="text" value="{{$post->title}}" 
+      class="form-control" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <input type="hidden" name="created_at" value="<?php echo time(); ?>">
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Description</label>
+      <label  class="m-2 bg-dark text-light rounded-pill p-2 font-weight-bold"
+       for="exampleInputPassword1">Description</label>
       <textarea name="description" class="form-control">
         {{$post->description}}
       </textarea>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Users</label>
+      <label  class="m-2 bg-dark text-light rounded-pill p-2 font-weight-bold"
+      for="exampleInputPassword1">Post Creator</label>
       
       <select name="posted_by" class="form-control">
         @foreach($users as $user)  
@@ -38,6 +43,7 @@
         </select>
     </div>
 
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-success border border-dark font-weight-bold 
+    rounded-pill p-3 m-2">Update</button>
   </form>
 @endsection
