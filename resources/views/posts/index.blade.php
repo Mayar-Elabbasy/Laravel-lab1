@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-8 center-block">
+        <div class="col-10 center-block">
         <a class="btn btn-success m-5 col-4 p-3 font-weight-bold float-left"
              href="{{route('posts.create')}}">Create Post</a>
             <table class="table m-5 bg-light">
@@ -15,6 +15,7 @@
                   <th scope="col border border-primary" colspan="2">Title</th>
                   <th scope="col border border-primary" colspan="2">Created At</th>
                   <th scope="col border border-primary" colspan="4">Posted By</th>
+                  <th scope="col border border-primary" colspan="2">Slug</th>
                   <th scope="col" colspan="4">Actions</th>
                 </tr>
               </thead>
@@ -29,6 +30,8 @@
                         {{$post->created_at->format('m-d-Y')}}</td>
                     <td colspan="4" class="border border-primary">
                         {{ $post->user? $post->user->name : 'not exist'}}</td>
+                    <td colspan="2" class="border border-primary">
+                        {{ $post->slug}}</td>
                     <td class="border border-primary">
                         <a class="btn btn-info font-weight-bold border border-primary"
                           href="{{route('posts.show',['post' => $post->id])}}">View</a></td>

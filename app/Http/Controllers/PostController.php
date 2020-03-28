@@ -36,6 +36,7 @@ class PostController extends Controller
 
     public function store(){
         $request = request();
+       
 
         $validatedData = $request->validate([
             'title' => 'required|min:3|unique:posts',
@@ -53,6 +54,7 @@ class PostController extends Controller
             'description' =>  $request->description,
             'posted_by' =>  $request->posted_by,
         ]);
+        $request->only('title','description','posted_by');
         return redirect()->route('posts.index');
     }
 
