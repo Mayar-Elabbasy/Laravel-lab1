@@ -11,6 +11,7 @@ class PostController extends Controller
     
    public function index(){
        $posts= Post::all();
+    
     //    dd($posts[0]->user);
        return view('posts.index',[
            'posts' => $posts,
@@ -104,6 +105,7 @@ class PostController extends Controller
                 'title' => $request->title,
                 'description' =>  $request->description,
                 'posted_by' =>  $request->posted_by,
+                'slug'=> $request->slug = $request->title,
             ]);
         return redirect()->route('posts.index');
     }

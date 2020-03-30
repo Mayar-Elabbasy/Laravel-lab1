@@ -57,7 +57,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $github_user_info = Socialite::driver('github')->user();
+        $github_user_info = Socialite::driver('github')->stateless()->user();
         $user= $this->userCreateOrFind($github_user_info);
         Auth::login($user, true);
         return redirect($this->redirectTo);
