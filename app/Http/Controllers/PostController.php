@@ -3,16 +3,13 @@
 namespace App\Http\Controllers;
 use App\Post;
 use App\User;
-
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
-{
-    
+{ 
    public function index(){
        $posts= Post::all();
-    
-    //    dd($posts[0]->user);
        return view('posts.index',[
            'posts' => $posts,
             
@@ -35,23 +32,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(){
-        $request = request();
-       
-
-        $validatedData = $request->validate([
-            'title' => 'required|min:3|unique:posts',
-            'description' => 'required|min:10',
-            'posted_by' => 'required|exists:users,id',
-        ],[
-            'title.min' => 'The Title has minimum of 3 chars',
-            'title.required' => 'Title is required, you have to fill it!',
-            'title.unique' => 'Title is unique, you have to choose a different title!',
-            'description.min' => 'The Description has minimum of 10 chars',
-            'description.required' => 'Description is required, you have to fill it!',
-            'posted_by.exists'=>'This Post Creator doesn\'t exist in the database!!!!', 
-        ]);
-
+    public function store(PostRequest $request){
         Post::create([
             'title' => $request->title,
             'description' =>  $request->description,
@@ -81,24 +62,7 @@ class PostController extends Controller
     }
    
 
-    public function update($postId){
-        
-        $request = request();
-        // @dd($request->posted_by);
-        $validatedData = $request->validate([
-            'title' => 'required|min:3',
-            'description' => 'required|min:10',
-            'posted_by' => 'required|exists:users,id',
-        ],[
-            'title.min' => 'The Title has minimum of 3 chars',
-            'title.required' => 'Title is required, you have to fill it!',
-            'title.unique' => 'Title is unique, you have to choose a different title!',
-            'description.min' => 'The Description has minimum of 10 chars',
-            'description.required' => 'Description is required, you have to fill it!',
-            'posted_by.exists'=>'This Post Creator doesn\'t exist in the database!!!!', 
-
-        ]);
-
+    public function update(Request $request, $postId){
         $postId = $request->post;
         Post::where('id', $postId)
             ->update([

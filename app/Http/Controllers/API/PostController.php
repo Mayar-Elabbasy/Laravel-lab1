@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -28,22 +29,7 @@ class PostController extends Controller
         }
         return new PostResource(Post::find(request()->post));
     }
-    public function store(){
-        $request = request();
-
-        $validatedData = $request->validate([
-            'title' => 'required|min:3|unique:posts',
-            'description' => 'required|min:10',
-            'posted_by' => 'required|exists:users,id',
-        ],[
-            'title.min' => 'The Title has minimum of 3 chars',
-            'title.required' => 'Title is required, you have to fill it!',
-            'title.unique' => 'Title is unique, you have to choose a different title!',
-            'description.min' => 'The Description has minimum of 10 chars',
-            'description.required' => 'Description is required, you have to fill it!',
-            'posted_by.exists'=> 'This Post Creator doesn\'t exist in the database!!!!', 
-        ]);
-
+    public function store(PostRequest $request){
         Post::create([
             'title' => $request->title,
             'description' =>  $request->description,
